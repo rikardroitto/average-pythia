@@ -130,7 +130,7 @@
                 <p id="question-text-display" class="text-lg font-medium"></p>
             </div>
             <div class="space-y-4">
-                <input type="text" id="answer-input" placeholder="Enter a number" class="input-field" pattern="-?[0-9]*\.?[0-9]*">
+                <input type="text" id="answer-input" placeholder="Enter a number" class="input-field" pattern="-?[0-9]*[.,]?[0-9]*" inputmode="decimal">
                 <button onclick="submitAnswer()" id="submit-answer-btn" class="btn-primary" disabled>Submit</button>
             </div>
         </div>

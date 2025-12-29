@@ -71,6 +71,13 @@ socket.on('go_to_screen', (data) => {
 
         case 'answer':
             displayQuestion(screenData.question);
+            // Clear answer input for new question
+            const answerInput = document.getElementById('answer-input');
+            const submitAnswerBtn = document.getElementById('submit-answer-btn');
+            if (answerInput) {
+                answerInput.value = '';
+                submitAnswerBtn.disabled = true;
+            }
             showScreen('answer');
             // Show timer if enabled
             if (screenData.timer_enabled) {
@@ -208,8 +215,11 @@ function submitAnswer() {
         return;
     }
 
+    // Replace comma with period for proper decimal parsing
+    const normalizedAnswer = answer.replace(',', '.');
+
     socket.emit('submit_answer', {
-        answer: answer
+        answer: normalizedAnswer
     });
 }
 

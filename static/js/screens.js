@@ -90,17 +90,54 @@ function renderLeaderboard(scores, containerId, showMedals = false) {
 
     container.innerHTML = '';
 
-    scores.forEach((scoreData, index) => {
+    // Calculate medals for tied scores
+    const medals = {};
+    if (showMedals && scores.length > 0) {
+        let medalsGiven = 0;
+        let position = 1;
+
+        // Group scores by unique values
+        const uniqueScores = [];
+        let lastScore = null;
+        scores.forEach(scoreData => {
+            if (scoreData.score !== lastScore) {
+                uniqueScores.push({
+                    score: scoreData.score,
+                    players: [scoreData.name]
+                });
+                lastScore = scoreData.score;
+            } else {
+                uniqueScores[uniqueScores.length - 1].players.push(scoreData.name);
+            }
+        });
+
+        // Assign medals
+        for (const group of uniqueScores) {
+            if (medalsGiven >= 3) break;
+
+            let medal = null;
+            if (position === 1) medal = '🥇';
+            else if (position === 2) medal = '🥈';
+            else if (position === 3) medal = '🥉';
+            else break;
+
+            // Give medal to all players in this score group
+            group.players.forEach(name => {
+                medals[name] = medal;
+            });
+
+            medalsGiven += group.players.length;
+            position += group.players.length;
+        }
+    }
+
+    scores.forEach((scoreData) => {
         const div = document.createElement('div');
         div.className = 'player-item';
 
         let text = '';
-        if (showMedals && index === 0) {
-            text = `🥇 ${scoreData.name}: ${scoreData.score} points`;
-        } else if (showMedals && index === 1) {
-            text = `🥈 ${scoreData.name}: ${scoreData.score} points`;
-        } else if (showMedals && index === 2) {
-            text = `🥉 ${scoreData.name}: ${scoreData.score} points`;
+        if (medals[scoreData.name]) {
+            text = `${medals[scoreData.name]} ${scoreData.name}: ${scoreData.score} points`;
         } else {
             text = `${scoreData.name}: ${scoreData.score} points`;
         }
@@ -182,9 +219,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (answerInput && submitAnswerBtn) {
         answerInput.addEventListener('input', (e) => {
-            // Allow only numbers, minus sign, and decimal point
+            // Allow only numbers, minus sign, and decimal point/comma
             const value = e.target.value;
-            const isValid = /^-?[0-9]*\.?[0-9]*$/.test(value) && value !== '' && value !== '-' && value !== '.';
+            const isValid = /^-?[0-9]*[.,]?[0-9]*$/.test(value) && value !== '' && value !== '-' && value !== '.' && value !== ',';
             submitAnswerBtn.disabled = !isValid;
         });
     }

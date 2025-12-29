@@ -17,10 +17,23 @@
 
 .btn-primary {
     @apply w-full py-3 px-6 bg-purple-600 text-white rounded-lg font-semibold text-lg transition-all duration-200 hover:bg-purple-700 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    border: 3px solid #7c3aed;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover:not(:disabled) {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 .btn-secondary {
-    @apply w-full py-3 px-6 bg-gray-200 text-gray-800 rounded-lg font-semibold text-lg transition-all duration-200 hover:bg-gray-300 active:scale-95;
+    @apply w-full py-3 px-6 bg-white text-gray-800 rounded-lg font-semibold text-lg transition-all duration-200 hover:bg-gray-50 active:scale-95;
+    border: 3px solid #d1d5db;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover {
+    border-color: #9ca3af;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 .input-field {
