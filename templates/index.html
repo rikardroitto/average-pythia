@@ -227,7 +227,10 @@
 
         <!-- Final Results Screen -->
         <div id="screen-final" class="screen hidden">
-            <h2 class="text-2xl font-bold text-purple-900 mb-6">Power Pythias</h2>
+            <div class="text-center mb-6">
+                <img id="winner-img" src="{{ url_for('static', filename='winner.png') }}" alt="Power Pythias" class="mx-auto max-w-xs">
+                <h2 id="winner-text" class="text-2xl font-bold text-purple-900 hidden">Power Pythias</h2>
+            </div>
             <div class="bg-white p-4 rounded-lg mb-4 w-full">
                 <div id="final-scores-list" class="space-y-2"></div>
             </div>

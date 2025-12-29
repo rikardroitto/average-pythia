@@ -272,4 +272,21 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('join-code').value = joinCode;
         showScreen('join-name');
     }
+
+    // Winner image fallback
+    const winnerImg = document.getElementById('winner-img');
+    const winnerText = document.getElementById('winner-text');
+
+    if (winnerImg && winnerText) {
+        winnerImg.addEventListener('error', () => {
+            winnerImg.classList.add('hidden');
+            winnerText.classList.remove('hidden');
+        });
+
+        // Check if image is already loaded (cached)
+        if (winnerImg.complete && winnerImg.naturalHeight === 0) {
+            winnerImg.classList.add('hidden');
+            winnerText.classList.remove('hidden');
+        }
+    }
 });
