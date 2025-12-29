@@ -293,15 +293,18 @@ def handle_show_winner():
     # Reset flag to allow advancing to next question
     game["advanced_from_winner"] = False
 
-    emit('go_to_screen', {
-        'screen': 'winner',
-        'data': {
-            'question': question,
-            'sorted_results': sorted_results,
-            'winners': winners,
-            'median': median
-        }
-    }, room=game["code"])
+    # Send to each player individually with their host status
+    for player_sid in game["players"]:
+        emit('go_to_screen', {
+            'screen': 'winner',
+            'data': {
+                'question': question,
+                'sorted_results': sorted_results,
+                'winners': winners,
+                'median': median,
+                'is_host': player_sid == game["host_sid"]
+            }
+        }, room=player_sid)
 
 
 @socketio.on('next_question')
@@ -324,12 +327,16 @@ def handle_next_question():
     has_more = gm.advance_to_next_question(game["code"])
 
     if has_more:
-        # Show leaderboard
+        # Show leaderboard - send to each player with host status
         leaderboard = gm.get_leaderboard(game["code"])
-        emit('go_to_screen', {
-            'screen': 'leaderboard',
-            'data': {'scores': leaderboard}
-        }, room=game["code"])
+        for player_sid in game["players"]:
+            emit('go_to_screen', {
+                'screen': 'leaderboard',
+                'data': {
+                    'scores': leaderboard,
+                    'is_host': player_sid == game["host_sid"]
+                }
+            }, room=player_sid)
     else:
         # Show final results
         final_scores = gm.get_leaderboard(game["code"])
