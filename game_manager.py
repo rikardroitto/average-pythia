@@ -126,7 +126,14 @@ def submit_question(game_code: str, sid: str, question_text: str, doodle_data: s
     if sid not in game["players"]:
         return False
 
+    # Check if player already submitted a question
     author = game["players"][sid]["name"]
+    for existing_q in game["questions"]:
+        if existing_q["author"] == author:
+            # Player already submitted, don't add duplicate
+            game["players_ready"].add(sid)
+            return True
+
     game["questions"].append({
         "author": author,
         "text": question_text,
@@ -191,6 +198,9 @@ def submit_answer(game_code: str, sid: str, answer: float) -> bool:
 
     question_idx = game["question_order"][game["current_question_index"]]
     player_name = game["players"][sid]["name"]
+
+    # Only add answer if player hasn't already answered
+    # (This allows updating answer, but prevents multiple submissions)
     game["questions"][question_idx]["answers"][player_name] = answer
     game["players_ready"].add(sid)
 

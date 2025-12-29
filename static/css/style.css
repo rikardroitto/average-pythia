@@ -46,10 +46,16 @@ textarea.input-field {
     max-width: 100%;
 }
 
-/* Ensure all white boxes are full-width */
-.bg-white {
+/* Ensure all content boxes are full-width */
+.bg-white.p-4, .bg-white.p-6 {
     width: 100%;
     box-sizing: border-box;
+}
+
+/* Force buttons to be full width */
+button.btn-primary, button.btn-secondary {
+    width: 100% !important;
+    display: block !important;
 }
 
 .player-item {
