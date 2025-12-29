@@ -293,16 +293,16 @@ def handle_show_winner():
     # Reset flag to allow advancing to next question
     game["advanced_from_winner"] = False
 
-    # Send to each player individually with their host status
+    # Send to each player - host gets 'winner', others get 'winner-waiting'
     for player_sid in game["players"]:
+        screen_name = 'winner' if player_sid == game["host_sid"] else 'winner-waiting'
         emit('go_to_screen', {
-            'screen': 'winner',
+            'screen': screen_name,
             'data': {
                 'question': question,
                 'sorted_results': sorted_results,
                 'winners': winners,
-                'median': median,
-                'is_host': player_sid == game["host_sid"]
+                'median': median
             }
         }, room=player_sid)
 
@@ -327,15 +327,13 @@ def handle_next_question():
     has_more = gm.advance_to_next_question(game["code"])
 
     if has_more:
-        # Show leaderboard - send to each player with host status
+        # Show leaderboard - host gets 'leaderboard', others get 'leaderboard-waiting'
         leaderboard = gm.get_leaderboard(game["code"])
         for player_sid in game["players"]:
+            screen_name = 'leaderboard' if player_sid == game["host_sid"] else 'leaderboard-waiting'
             emit('go_to_screen', {
-                'screen': 'leaderboard',
-                'data': {
-                    'scores': leaderboard,
-                    'is_host': player_sid == game["host_sid"]
-                }
+                'screen': screen_name,
+                'data': {'scores': leaderboard}
             }, room=player_sid)
     else:
         # Show final results

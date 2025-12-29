@@ -175,7 +175,7 @@
             </div>
         </div>
 
-        <!-- Winner Screen -->
+        <!-- Winner Screen (Host) -->
         <div id="screen-winner" class="screen hidden">
             <h2 class="text-2xl font-bold text-purple-900 mb-6">Results</h2>
             <div class="bg-white p-4 rounded-lg mb-4 w-full">
@@ -189,16 +189,40 @@
                 </div>
                 <div id="results-list" class="space-y-2"></div>
             </div>
-            <button onclick="nextQuestion()" id="next-btn" class="btn-primary w-full hidden">Next</button>
+            <button onclick="nextQuestion()" class="btn-primary w-full">Next</button>
         </div>
 
-        <!-- Leaderboard Screen -->
+        <!-- Winner Screen (Non-host) -->
+        <div id="screen-winner-waiting" class="screen hidden">
+            <h2 class="text-2xl font-bold text-purple-900 mb-6">Results</h2>
+            <div class="bg-white p-4 rounded-lg mb-4 w-full">
+                <div class="mb-4">
+                    <img id="winner-waiting-question-doodle" src="" alt="" class="mx-auto mb-2 max-w-xs hidden">
+                    <p id="winner-waiting-question-text" class="text-sm text-gray-600"></p>
+                </div>
+                <div class="mb-2">
+                    <span class="text-sm text-gray-600">The prophetic truth (median): </span>
+                    <span id="median-waiting-value" class="font-bold"></span>
+                </div>
+                <div id="results-waiting-list" class="space-y-2"></div>
+            </div>
+        </div>
+
+        <!-- Leaderboard Screen (Host) -->
         <div id="screen-leaderboard" class="screen hidden">
             <h2 class="text-2xl font-bold text-purple-900 mb-6">Pythia Leaderboard</h2>
             <div class="bg-white p-4 rounded-lg mb-4 w-full">
                 <div id="leaderboard-list" class="space-y-2"></div>
             </div>
-            <button onclick="continueToNext()" id="continue-btn" class="btn-primary w-full hidden">Next</button>
+            <button onclick="continueToNext()" class="btn-primary w-full">Next</button>
+        </div>
+
+        <!-- Leaderboard Screen (Non-host) -->
+        <div id="screen-leaderboard-waiting" class="screen hidden">
+            <h2 class="text-2xl font-bold text-purple-900 mb-6">Pythia Leaderboard</h2>
+            <div class="bg-white p-4 rounded-lg mb-4 w-full">
+                <div id="leaderboard-waiting-list" class="space-y-2"></div>
+            </div>
         </div>
 
         <!-- Final Results Screen -->

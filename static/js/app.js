@@ -99,28 +99,24 @@ socket.on('go_to_screen', (data) => {
             displayWinnerQuestion(screenData.question);
             renderResults(screenData.sorted_results, 'results-list');
             document.getElementById('median-value').textContent = screenData.median;
-
-            // Show button only for host (using server-sent is_host)
-            const nextBtn = document.getElementById('next-btn');
-            if (screenData.is_host) {
-                nextBtn.classList.remove('hidden');
-            } else {
-                nextBtn.classList.add('hidden');
-            }
             showScreen('winner');
+            break;
+
+        case 'winner-waiting':
+            displayWinnerQuestionWaiting(screenData.question);
+            renderResults(screenData.sorted_results, 'results-waiting-list');
+            document.getElementById('median-waiting-value').textContent = screenData.median;
+            showScreen('winner-waiting');
             break;
 
         case 'leaderboard':
             renderLeaderboard(screenData.scores, 'leaderboard-list', false);
-
-            // Show button only for host (using server-sent is_host)
-            const continueBtn = document.getElementById('continue-btn');
-            if (screenData.is_host) {
-                continueBtn.classList.remove('hidden');
-            } else {
-                continueBtn.classList.add('hidden');
-            }
             showScreen('leaderboard');
+            break;
+
+        case 'leaderboard-waiting':
+            renderLeaderboard(screenData.scores, 'leaderboard-waiting-list', false);
+            showScreen('leaderboard-waiting');
             break;
 
         case 'final':

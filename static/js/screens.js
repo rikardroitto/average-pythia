@@ -185,6 +185,21 @@ function displayWinnerQuestion(question) {
     }
 }
 
+function displayWinnerQuestionWaiting(question) {
+    const textDisplay = document.getElementById('winner-waiting-question-text');
+    if (textDisplay) {
+        textDisplay.textContent = question.text;
+    }
+
+    const doodleImg = document.getElementById('winner-waiting-question-doodle');
+    if (doodleImg && question.doodle) {
+        doodleImg.src = question.doodle;
+        doodleImg.classList.remove('hidden');
+    } else if (doodleImg) {
+        doodleImg.classList.add('hidden');
+    }
+}
+
 // Input validation
 document.addEventListener('DOMContentLoaded', () => {
     // Timer toggle
