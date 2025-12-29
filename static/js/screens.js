@@ -19,6 +19,12 @@ function showScreen(screenName) {
         if (screenName === 'enter-question') {
             setTimeout(initCanvas, 100);
         }
+
+        // Reset game state when returning to start
+        if (screenName === 'start') {
+            window.gameCode = null;
+            isHost = false;
+        }
     }
 }
 

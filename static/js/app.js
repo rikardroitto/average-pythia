@@ -1,7 +1,7 @@
 // Main application logic and SocketIO handling
 
 const socket = io();
-let gameCode = null;
+window.gameCode = null;
 
 // Socket event handlers
 socket.on('connect', () => {
@@ -17,7 +17,7 @@ socket.on('error', (data) => {
 });
 
 socket.on('game_created', (data) => {
-    gameCode = data.code;
+    window.gameCode = data.code;
     isHost = true;
 
     document.getElementById('game-code').textContent = data.code;
@@ -28,7 +28,7 @@ socket.on('game_created', (data) => {
 });
 
 socket.on('game_joined', (data) => {
-    gameCode = data.code;
+    window.gameCode = data.code;
     isHost = data.is_host;
 
     renderPlayersList(data.players, 'lobby-players-list');

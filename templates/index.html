@@ -62,16 +62,16 @@
         <!-- Invite Screen -->
         <div id="screen-invite" class="screen hidden">
             <h2 class="text-2xl font-bold text-purple-900 mb-6">Invite Players</h2>
-            <div class="bg-white p-4 rounded-lg mb-4 text-center">
+            <div class="bg-white p-4 rounded-lg mb-4 text-center w-full">
                 <img id="qr-code" src="" alt="QR Code" class="mx-auto mb-4">
                 <p class="text-sm text-gray-600">Game Code:</p>
                 <p id="game-code" class="text-3xl font-bold text-purple-900"></p>
             </div>
-            <div class="bg-white p-4 rounded-lg mb-4">
+            <div class="bg-white p-4 rounded-lg mb-4 w-full">
                 <h3 class="font-bold mb-2">Players:</h3>
                 <div id="invite-players-list" class="space-y-2"></div>
             </div>
-            <button onclick="startGame()" class="btn-primary">Start Playing</button>
+            <button onclick="startGame()" class="btn-primary w-full">Start Playing</button>
         </div>
 
         <!-- Join Code Screen -->
@@ -105,30 +105,30 @@
         <!-- Enter Question Screen -->
         <div id="screen-enter-question" class="screen hidden">
             <h2 class="text-xl font-bold text-purple-900 mb-6">Enter question. Answer must be a number</h2>
-            <div class="space-y-6">
-                <div>
+            <div class="flex flex-col gap-6">
+                <div class="w-full">
                     <h3 class="text-lg font-semibold text-gray-700 mb-2">Doodle (optional)</h3>
-                    <div class="bg-white p-4 rounded-lg">
+                    <div class="bg-white p-4 rounded-lg w-full">
                         <canvas id="doodle-canvas" width="300" height="300" class="border-2 border-gray-300 mx-auto touch-none"></canvas>
-                        <button onclick="resetCanvas()" class="btn-secondary mt-2">Reset doodle</button>
+                        <button onclick="resetCanvas()" class="btn-secondary mt-2 w-full">Reset doodle</button>
                     </div>
                 </div>
-                <div>
+                <div class="w-full">
                     <h3 class="text-lg font-semibold text-gray-700 mb-2">Question (obligatory)</h3>
-                    <textarea id="question-text" placeholder="Type your question here..." class="input-field h-24"></textarea>
+                    <textarea id="question-text" placeholder="Type your question here..." class="input-field h-24 w-full"></textarea>
                 </div>
-                <button onclick="submitQuestion()" id="submit-question-btn" class="btn-primary" disabled>Submit</button>
+                <button onclick="submitQuestion()" id="submit-question-btn" class="btn-primary w-full" disabled>Submit</button>
             </div>
         </div>
 
         <!-- Lobby Questions (Host) -->
         <div id="screen-lobby-questions" class="screen hidden">
             <h2 class="text-2xl font-bold text-purple-900 mb-6">Waiting for players to submit questions</h2>
-            <div class="bg-white p-4 rounded-lg mb-4">
+            <div class="bg-white p-4 rounded-lg mb-4 w-full">
                 <h3 class="font-bold mb-2">Ready:</h3>
                 <div id="questions-ready-list" class="space-y-2"></div>
             </div>
-            <button onclick="startAnswering()" class="btn-primary">Start Playing</button>
+            <button onclick="startAnswering()" class="btn-primary w-full">Start Playing</button>
         </div>
 
         <!-- Lobby Questions Waiting (Non-host) -->
@@ -159,11 +159,11 @@
         <!-- Lobby Answers (Host) -->
         <div id="screen-lobby-answers" class="screen hidden">
             <h2 class="text-2xl font-bold text-purple-900 mb-6">Waiting for players to submit reply</h2>
-            <div class="bg-white p-4 rounded-lg mb-4">
+            <div class="bg-white p-4 rounded-lg mb-4 w-full">
                 <h3 class="font-bold mb-2">Ready:</h3>
                 <div id="answers-ready-list" class="space-y-2"></div>
             </div>
-            <button onclick="showWinner()" class="btn-primary">Present Winner</button>
+            <button onclick="showWinner()" class="btn-primary w-full">Present Winner</button>
         </div>
 
         <!-- Lobby Answers Waiting (Non-host) -->
@@ -178,7 +178,7 @@
         <!-- Winner Screen -->
         <div id="screen-winner" class="screen hidden">
             <h2 class="text-2xl font-bold text-purple-900 mb-6">Results</h2>
-            <div class="bg-white p-4 rounded-lg mb-4">
+            <div class="bg-white p-4 rounded-lg mb-4 w-full">
                 <div class="mb-4">
                     <img id="winner-question-doodle" src="" alt="" class="mx-auto mb-2 max-w-xs hidden">
                     <p id="winner-question-text" class="text-sm text-gray-600"></p>
@@ -189,25 +189,25 @@
                 </div>
                 <div id="results-list" class="space-y-2"></div>
             </div>
-            <button onclick="nextQuestion()" id="next-btn" class="btn-primary hidden">Next</button>
+            <button onclick="nextQuestion()" id="next-btn" class="btn-primary w-full hidden">Next</button>
         </div>
 
         <!-- Leaderboard Screen -->
         <div id="screen-leaderboard" class="screen hidden">
             <h2 class="text-2xl font-bold text-purple-900 mb-6">Pythia Leaderboard</h2>
-            <div class="bg-white p-4 rounded-lg mb-4">
+            <div class="bg-white p-4 rounded-lg mb-4 w-full">
                 <div id="leaderboard-list" class="space-y-2"></div>
             </div>
-            <button onclick="continueToNext()" id="continue-btn" class="btn-primary hidden">Next</button>
+            <button onclick="continueToNext()" id="continue-btn" class="btn-primary w-full hidden">Next</button>
         </div>
 
         <!-- Final Results Screen -->
         <div id="screen-final" class="screen hidden">
             <h2 class="text-2xl font-bold text-purple-900 mb-6">Power Pythias</h2>
-            <div class="bg-white p-4 rounded-lg mb-4">
+            <div class="bg-white p-4 rounded-lg mb-4 w-full">
                 <div id="final-scores-list" class="space-y-2"></div>
             </div>
-            <button onclick="showScreen('start')" class="btn-primary">Back to start</button>
+            <button onclick="showScreen('start')" class="btn-primary w-full">Back to start</button>
         </div>
 
     </div>

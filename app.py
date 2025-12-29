@@ -275,8 +275,16 @@ def handle_show_winner():
         emit('error', {'message': 'No current question'})
         return
 
+    # Check if points already awarded for this question
+    if question.get("points_awarded", False):
+        emit('error', {'message': 'Points already awarded for this question'})
+        return
+
     winners, sorted_results, median = gm.calculate_winner(question["answers"])
     gm.award_points(game["code"], winners)
+
+    # Mark points as awarded
+    question["points_awarded"] = True
 
     emit('go_to_screen', {
         'screen': 'winner',

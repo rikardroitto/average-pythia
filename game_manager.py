@@ -131,7 +131,8 @@ def submit_question(game_code: str, sid: str, question_text: str, doodle_data: s
         "author": author,
         "text": question_text,
         "doodle": doodle_data,
-        "answers": {}
+        "answers": {},
+        "points_awarded": False
     })
     game["players_ready"].add(sid)
     return True
