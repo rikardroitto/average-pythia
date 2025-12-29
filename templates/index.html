@@ -21,7 +21,22 @@
                 <button onclick="showScreen('create')" class="btn-primary">Start new game</button>
                 <button onclick="showScreen('join-code')" class="btn-primary">Join game</button>
                 <button disabled class="btn-primary opacity-50 cursor-not-allowed">Login</button>
+                <button onclick="showScreen('about')" class="btn-secondary mt-4">What is this?</button>
             </div>
+        </div>
+
+        <!-- About Screen -->
+        <div id="screen-about" class="screen hidden">
+            <h2 class="text-2xl font-bold text-purple-900 mb-6">What is Average Pythia?</h2>
+            <div class="bg-white p-6 rounded-lg mb-6">
+                <p class="text-lg leading-relaxed text-gray-800">
+                    Predict the future with your friends. Each player asks a question about the future. The answer must be a number. Then you all suggest an answer to each other's questions.
+                </p>
+                <p class="text-lg leading-relaxed text-gray-800 mt-4">
+                    The player who suggests the median answer wins and gets 1 point. The player that gets the most points wins the honor of being the most mediocre Pythia in the room.
+                </p>
+            </div>
+            <button onclick="showScreen('start')" class="btn-primary">Return</button>
         </div>
 
         <!-- Create Game Screen -->
