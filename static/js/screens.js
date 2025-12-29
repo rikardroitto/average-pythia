@@ -230,16 +230,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const logo = document.getElementById('logo');
     const logoText = document.getElementById('logo-text');
 
-    if (logo) {
-        logo.addEventListener('load', () => {
-            logo.classList.remove('hidden');
-            if (logoText) logoText.classList.add('hidden');
-        });
-
+    if (logo && logoText) {
         logo.addEventListener('error', () => {
             logo.classList.add('hidden');
-            if (logoText) logoText.classList.remove('hidden');
+            logoText.classList.remove('hidden');
         });
+
+        // Check if image is already loaded (cached)
+        if (logo.complete && logo.naturalHeight === 0) {
+            // Image failed to load
+            logo.classList.add('hidden');
+            logoText.classList.remove('hidden');
+        }
     }
 
     // Check for join code in URL
