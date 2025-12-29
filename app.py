@@ -4,11 +4,15 @@ import qrcode
 import io
 import base64
 import os
+import time
 from config import Config
 import game_manager as gm
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+# Cache buster - changes on each server restart
+CACHE_BUSTER = str(int(time.time()))
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 
@@ -39,7 +43,7 @@ def generate_qr_code(game_code: str) -> str:
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', v=CACHE_BUSTER)
 
 
 @app.after_request
