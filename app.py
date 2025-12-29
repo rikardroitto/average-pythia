@@ -42,6 +42,15 @@ def index():
     return render_template('index.html')
 
 
+@app.after_request
+def add_header(response):
+    """Add cache headers for static files"""
+    if 'static' in request.path:
+        response.cache_control.max_age = 31536000  # 1 year
+        response.cache_control.public = True
+    return response
+
+
 @socketio.on('connect')
 def handle_connect():
     print(f'Client connected: {request.sid}')

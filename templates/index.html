@@ -30,10 +30,10 @@
             <h2 class="text-2xl font-bold text-purple-900 mb-6">What is Average Pythia?</h2>
             <div class="bg-white p-6 rounded-lg mb-6">
                 <p class="text-lg leading-relaxed text-gray-800">
-                    Predict the future with your friends. Each player asks a question about the future. The answer must be a number. Then you all suggest an answer to each other's questions.
+                    Predict the future with your friends. Each players asks a question about the future. The answer must be a number. Then you all suggest an answer to each other's questions.
                 </p>
                 <p class="text-lg leading-relaxed text-gray-800 mt-4">
-                    The player who suggests the median answer wins and gets 1 point. The player that gets the most points wins the honor of being the most mediocre Pythia in the room.
+                    The player who suggests the median answer wins and gets 1 point. That answer is also THE PROPHETIC TRUTH. The player that get the most points wins the honor of being the most mediocre Pythia in the room.
                 </p>
             </div>
             <button onclick="showScreen('start')" class="btn-primary">Return</button>
@@ -104,13 +104,19 @@
 
         <!-- Enter Question Screen -->
         <div id="screen-enter-question" class="screen hidden">
-            <h2 class="text-xl font-bold text-purple-900 mb-4">Enter question. Answer must be a number</h2>
-            <div class="space-y-4">
-                <div class="bg-white p-4 rounded-lg">
-                    <canvas id="doodle-canvas" width="300" height="300" class="border-2 border-gray-300 mx-auto touch-none"></canvas>
-                    <button onclick="resetCanvas()" class="btn-secondary mt-2">Reset doodle</button>
+            <h2 class="text-xl font-bold text-purple-900 mb-6">Enter question. Answer must be a number</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Doodle (optional)</h3>
+                    <div class="bg-white p-4 rounded-lg">
+                        <canvas id="doodle-canvas" width="300" height="300" class="border-2 border-gray-300 mx-auto touch-none"></canvas>
+                        <button onclick="resetCanvas()" class="btn-secondary mt-2">Reset doodle</button>
+                    </div>
                 </div>
-                <textarea id="question-text" placeholder="Type your question here..." class="input-field h-24"></textarea>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-2">Question (obligatory)</h3>
+                    <textarea id="question-text" placeholder="Type your question here..." class="input-field h-24"></textarea>
+                </div>
                 <button onclick="submitQuestion()" id="submit-question-btn" class="btn-primary" disabled>Submit</button>
             </div>
         </div>
