@@ -100,16 +100,23 @@ socket.on('go_to_screen', (data) => {
             renderResults(screenData.sorted_results, 'results-list');
             document.getElementById('median-value').textContent = screenData.median;
 
+            // Always hide first, then show only for host
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.classList.add('hidden');
             if (isHost) {
-                document.getElementById('next-btn').classList.remove('hidden');
+                nextBtn.classList.remove('hidden');
             }
             showScreen('winner');
             break;
 
         case 'leaderboard':
             renderLeaderboard(screenData.scores, 'leaderboard-list', false);
+
+            // Always hide first, then show only for host
+            const continueBtn = document.getElementById('continue-btn');
+            continueBtn.classList.add('hidden');
             if (isHost) {
-                document.getElementById('continue-btn').classList.remove('hidden');
+                continueBtn.classList.remove('hidden');
             }
             showScreen('leaderboard');
             break;
