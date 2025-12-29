@@ -286,6 +286,9 @@ def handle_show_winner():
     # Mark points as awarded
     question["points_awarded"] = True
 
+    # Reset flag to allow advancing to next question
+    game["advanced_from_winner"] = False
+
     emit('go_to_screen', {
         'screen': 'winner',
         'data': {
@@ -308,6 +311,11 @@ def handle_next_question():
     if not gm.is_host(request.sid, game["code"]):
         emit('error', {'message': 'Only host can proceed'})
         return
+
+    # Prevent double-click from advancing twice
+    if game.get("advanced_from_winner"):
+        return
+    game["advanced_from_winner"] = True
 
     has_more = gm.advance_to_next_question(game["code"])
 

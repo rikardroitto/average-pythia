@@ -35,7 +35,8 @@ def create_game(host_name: str, timer_enabled: bool, timer_seconds: int, host_si
         "current_question_index": 0,
         "question_order": [],
         "players_ready": set(),
-        "timer_start": None
+        "timer_start": None,
+        "advanced_from_winner": False
     }
     player_to_game[host_sid] = code
     return code
