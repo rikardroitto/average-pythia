@@ -38,6 +38,18 @@
 
 .input-field {
     @apply w-full p-3 border-2 border-gray-300 rounded-lg text-lg focus:outline-none focus:border-purple-600 transition-colors;
+    box-sizing: border-box;
+}
+
+textarea.input-field {
+    resize: vertical;
+    max-width: 100%;
+}
+
+/* Ensure all white boxes are full-width */
+.bg-white {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .player-item {

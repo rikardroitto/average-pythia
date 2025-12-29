@@ -126,7 +126,7 @@ def handle_join_game(data):
 
         # If game is in progress, send them to the right screen
         if game["phase"] == "lobby":
-            emit('go_to_screen', {'screen': 'lobby-waiting', 'data': {}})
+            emit('go_to_screen', {'screen': 'lobby-waiting', 'data': {'players': players}})
         elif game["phase"] == "answering":
             question = gm.get_current_question(code)
             ready_players = gm.get_ready_players(code)

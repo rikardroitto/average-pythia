@@ -151,7 +151,7 @@
                 <p id="question-text-display" class="text-lg font-medium"></p>
             </div>
             <div class="flex flex-col gap-4">
-                <input type="text" id="answer-input" placeholder="Enter a number" class="input-field" pattern="-?[0-9]*[.,]?[0-9]*" inputmode="decimal">
+                <input type="text" id="answer-input" placeholder="Enter a number" class="input-field" pattern="-?[0-9]*[.,]?[0-9]*" inputmode="text">
                 <button onclick="submitAnswer()" id="submit-answer-btn" class="btn-primary" disabled>Submit</button>
             </div>
         </div>
@@ -184,7 +184,7 @@
                     <p id="winner-question-text" class="text-sm text-gray-600"></p>
                 </div>
                 <div class="mb-2">
-                    <span class="text-sm text-gray-600">Median: </span>
+                    <span class="text-sm text-gray-600">The prophetic truth (median): </span>
                     <span id="median-value" class="font-bold"></span>
                 </div>
                 <div id="results-list" class="space-y-2"></div>
